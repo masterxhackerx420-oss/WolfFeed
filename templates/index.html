@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfFeed - Portable Social Feed</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Top bar -->
+        <header class="topbar">
+            <div class="logo">WolfFeed</div>
+            <div class="search">
+                <input type="text" placeholder="Search WolfFeed..." id="search" disabled>
+            </div>
+            <div class="user-area" id="userArea">
+                <button id="loginBtn" class="btn primary">Log In</button>
+                <button id="registerBtn" class="btn">Register</button>
+                <span id="usernameDisplay" style="display:none;"></span>
+                <button id="logoutBtn" class="btn" style="display:none;">Logout</button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left sidebar - Modes -->
+            <aside class="sidebar left">
+                <h3>Modes</h3>
+                <nav id="modeNav">
+                    <button class="mode-btn active" data-mode="classic">📰 Classic Feed</button>
+                    <button class="mode-btn" data-mode="live">🔴 Live Updates</button>
+                    <button class="mode-btn" data-mode="stories">📖 Stories</button>
+                    <button class="mode-btn" data-mode="groups">👥 Groups</button>
+                </nav>
+                <div class="theme-toggle">
+                    <button id="themeBtn" class="btn small">Toggle Theme</button>
+                </div>
+            </aside>
+
+            <!-- Center feed -->
+            <main class="feed">
+                <!-- Composer -->
+                <div class="composer" id="composer" style="display:none;">
+                    <textarea id="postContent" placeholder="What's on your mind? Share in WolfFeed..." rows="3"></textarea>
+                    <div class="composer-actions">
+                        <select id="postMode">
+                            <option value="classic">Classic</option>
+                            <option value="live">Live</option>
+                            <option value="story">Story</option>
+                            <option value="group">Group</option>
+                        </select>
+                        <button id="postBtn" class="btn primary">Post</button>
+                    </div>
+                </div>
+
+                <!-- Feed -->
+                <div id="feedContainer" class="posts">
+                    <div class="loading">Loading living feed...</div>
+                </div>
+            </main>
+
+            <!-- Right sidebar -->
+            <aside class="sidebar right">
+                <h3>About WolfFeed</h3>
+                <p>A portable, local social experience. No cloud, no tracking — just your data on your machine.</p>
+                <p>Modes make the feed feel alive. Switch between Classic, Live, Stories, and Groups.</p>
+                <div class="stats" id="stats">
+                    <div>Posts: <span id="postCount">-</span></div>
+                    <div>Mode: <span id="currentMode">classic</span></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2 id="modalTitle">Log In</h2>
+            <input type="text" id="authUsername" placeholder="Username">
+            <input type="password" id="authPassword" placeholder="Password">
+            <button id="authSubmit" class="btn primary">Submit</button>
+            <button id="authCancel" class="btn">Cancel</button>
+            <div id="authError" class="error"></div>
+        </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="commentModal" class="modal" style="display:none;">
+        <div class="modal-content wide">
+            <h2>Comments</h2>
+            <div id="commentsList"></div>
+            <div id="commentComposer" style="display:none;">
+                <textarea id="commentContent" placeholder="Write a comment..." rows="2"></textarea>
+                <button id="commentSubmit" class="btn primary">Comment</button>
+            </div>
+            <button id="commentClose" class="btn">Close</button>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
